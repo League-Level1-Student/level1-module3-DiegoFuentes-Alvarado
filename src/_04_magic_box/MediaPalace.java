@@ -9,6 +9,7 @@ package _04_magic_box;
 import java.applet.AudioClip;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,7 +32,8 @@ public class MediaPalace {
 		Icon icon = new ImageIcon(url);
 		return new JLabel(icon);
 	}
-
+	
+	
 	/*
 	 * To use this method, the image must be placed in your Eclipse project in the same package as this class.
 	 */
@@ -55,7 +57,13 @@ public class MediaPalace {
 	 * Uncomment this method.
 	 */
 	private void playMp3FromComputer(String fileName) throws JavaLayerException {
-	 FileInputStream songStream = new FileInputStream(fileName);
+	 FileInputStream songStream=null;
+	try {
+		songStream = new FileInputStream(fileName);
+	} catch (FileNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 	
 	 final Player playMp3 = new Player(songStream);
 	
@@ -64,7 +72,7 @@ public class MediaPalace {
 	 try {
 	 playMp3.play();
 	 } catch (JavaLayerException e) {
-	 TODO Auto-generated catch block
+	
 	 e.printStackTrace();
 	 }
 	 }

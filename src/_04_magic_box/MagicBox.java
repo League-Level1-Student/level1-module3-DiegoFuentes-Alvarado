@@ -12,9 +12,11 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -35,7 +37,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 */
 
 	BufferedImage backgroundImage;
-
+	MediaPalace palace = new MediaPalace();
 
 	@Override
 	public void run() {
@@ -46,10 +48,11 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 			System.err.println(w.getMessage());
 		}
 	}
-
+	JFrame frame = new JFrame("The Magic Box contains many secrets...");
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+		
 		frame.add(this);
+		
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +77,21 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("*click*");
+		System.out.println(e.getX()+"    "+e.getY());
+		if(e.getX() > 260 && e.getX() < 310 && e.getY() > 385 && e.getY() < 415){
+		try {
+			JLabel label = palace.loadImageFromTheInternet("https://scx1.b-cdn.net/csz/news/800/2016/63-scientistsdi.jpg");
+				frame.remove(this);
+				frame.add(label);
+				frame.pack();
+		} catch (MalformedURLException e1) {
+			 //TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		}
+		
+		
 	}
 
 	@Override
