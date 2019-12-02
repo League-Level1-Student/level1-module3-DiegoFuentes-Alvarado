@@ -13,8 +13,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -80,18 +83,32 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		System.out.println(e.getX()+"    "+e.getY());
 		if(e.getX() > 260 && e.getX() < 310 && e.getY() > 385 && e.getY() < 415){
 		try {
-			JLabel label = palace.loadImageFromTheInternet("https://scx1.b-cdn.net/csz/news/800/2016/63-scientistsdi.jpg");
+			JLabel water = palace.loadImageFromTheInternet("https://scx1.b-cdn.net/csz/news/800/2016/63-scientistsdi.jpg");
 				frame.remove(this);
-				frame.add(label);
+				frame.add(water);
 				frame.pack();
-		} catch (MalformedURLException e1) {
+		} 
+		catch (MalformedURLException e1) {
 			 //TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		}
 		
+		if(e.getX() > 495 && e.getX() < 545 && e.getY() > 980 && e.getY() < 1015){
+			JLabel pit = palace.loadImageFromWithinProject("The_Bottomless_Pit.jpg");
+			frame.remove(this);
+			frame.add(pit);
+			frame.pack();
+			}
 		
+	
+		if(e.getX() > 325 && e.getX() < 360 && e.getY() > 165 && e.getY() < 210){
+			JLabel screw = palace.loadImageFromWithinProject("screw.jpeg");
+			frame.remove(this);
+			frame.add(screw);
+			frame.pack();
+		}
 	}
 
 	@Override
